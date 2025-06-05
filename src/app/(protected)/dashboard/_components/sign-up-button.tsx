@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 
-import { Button } from "@/_components/ui/button";
+import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
 
 const SignUpButton = () => {

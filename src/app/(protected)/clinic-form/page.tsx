@@ -4,7 +4,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@/_components/ui/dialog";
+} from "@/components/ui/dialog";
 
 import ClinicForm from "./_components/form";
 
