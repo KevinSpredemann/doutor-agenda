@@ -7,8 +7,8 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import z from "zod";
 
-import { Button } from "@/components/ui/button";
-import { DialogFooter } from "@/components/ui/dialog";
+import { Button } from "@/_components/ui/button";
+import { DialogFooter } from "@/_components/ui/dialog";
 import {
   Form,
   FormControl,
@@ -16,8 +16,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "@/_components/ui/form";
+import { Input } from "@/_components/ui/input";
 import createClinic from "@/create-clinic";
 
 const clinicFormSchema = z.object({

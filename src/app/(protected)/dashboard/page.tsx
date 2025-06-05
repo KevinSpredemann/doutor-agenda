@@ -6,7 +6,7 @@ import { db } from "@/db";
 import { usersToClinicsTable } from "@/db/schema";
 import { auth } from "@/lib/auth";
 
-import SignUpButton from "./components/sign-up-button";
+import SignUpButton from "./_components/sign-up-button";
 const dashboardPage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
