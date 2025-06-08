@@ -113,8 +113,12 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
     <DialogContent>
       <Form {...form}>
         <DialogHeader>
-          <DialogTitle>Adicionar médico</DialogTitle>
-          <DialogDescription>Adicione um novo médico.</DialogDescription>
+          <DialogTitle>{doctor ? doctor.name : "Adicionar Médico"}</DialogTitle>
+          <DialogDescription>
+            {doctor
+              ? "Editar as informações desse médico."
+              : "Adicione um novo médico."}
+          </DialogDescription>
         </DialogHeader>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
@@ -379,10 +383,11 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
           />
           <DialogFooter>
             <Button type="submit" disabled={upsertDoctorAction.isPending}>
-              {upsertDoctorAction.isPending && (
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              )}
-              {upsertDoctorAction.isPending ? "Adicionando..." : "Adicionar"}
+              {upsertDoctorAction.isPending
+                ? "Salvando..."
+                : doctor
+                  ? "Salvar"
+                  : "Adicionar"}
             </Button>
           </DialogFooter>
         </form>
