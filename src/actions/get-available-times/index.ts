@@ -74,7 +74,6 @@ export const getAvailableTimes = actionClient
         .set("hour", Number(time.split(":")[0]))
         .set("minute", Number(time.split(":")[1]))
         .set("second", 0);
-
       return (
         date.format("HH:mm:ss") >= doctorAvailableFrom.format("HH:mm:ss") &&
         date.format("HH:mm:ss") <= doctorAvailableTo.format("HH:mm:ss")

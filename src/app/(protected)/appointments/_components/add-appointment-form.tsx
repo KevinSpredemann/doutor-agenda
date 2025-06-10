@@ -288,7 +288,6 @@ const AddAppointmentForm = ({
                       disabled={(date) =>
                         date < new Date() || !isDateAvailable(date)
                       }
-                      initialFocus
                     />
                   </PopoverContent>
                 </Popover>
