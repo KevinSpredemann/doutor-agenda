@@ -46,7 +46,7 @@ export default function TopSpecialties({
   topSpecialties,
 }: TopSpecialtiesProps) {
   const maxAppointments = Math.max(
-    ...topSpecialties.map((i) => i.appointments),
+    ...topSpecialties.map(i => i.appointments),
   );
   return (
     <Card className="mx-auto w-full">
