@@ -52,9 +52,9 @@ export default async function AppointmentsPage() {
     <PageContainer>
       <PageHeader>
         <PageHeaderContent>
-          <PageTitle>Consultas</PageTitle>
+          <PageTitle>Agendamentos</PageTitle>
           <PageDescription>
-            Gerencie as consultas da sua clínica
+            Gerencie os agendamentos da sua clínica
           </PageDescription>
         </PageHeaderContent>
         <PageActions>
