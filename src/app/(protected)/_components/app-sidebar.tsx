@@ -31,6 +31,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { usersTable } from "@/db/schema";
 import { authClient } from "@/lib/auth-client";
 
 const items = [
@@ -60,7 +61,8 @@ export function AppSidebar() {
   const router = useRouter();
   const session = authClient.useSession();
   const pathname = usePathname();
-  const handleSignout = async () => {
+
+  const handleSignOut = async () => {
     await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
@@ -69,10 +71,9 @@ export function AppSidebar() {
       },
     });
   };
-
   return (
     <Sidebar>
-      <SidebarHeader className="p-4">
+      <SidebarHeader className="border-b p-4">
         <Image src="/logo.svg" alt="Doutor Agenda" width={136} height={28} />
       </SidebarHeader>
       <SidebarContent>
@@ -117,22 +118,22 @@ export function AppSidebar() {
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <SidebarMenuButton size={"lg"}>
+                <SidebarMenuButton size="lg">
                   <Avatar>
-                    <AvatarFallback>AA</AvatarFallback>
+                    <AvatarFallback>{emailInitials}</AvatarFallback>
                   </Avatar>
                   <div>
                     <p className="text-sm">
                       {session.data?.user?.clinic?.name}
                     </p>
-                    <p className="text-muted-foreground text-xs">
+                    <p className="text-muted-foreground text-sm">
                       {session.data?.user.email}
                     </p>
                   </div>
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem onClick={handleSignout}>
+                <DropdownMenuItem onClick={handleSignOut}>
                   <LogOut />
                   Sair
                 </DropdownMenuItem>
