@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  AlignVerticalSpaceBetween,
   CalendarDays,
   Gem,
   LayoutDashboard,
@@ -12,7 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -31,7 +32,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { usersTable } from "@/db/schema";
 import { authClient } from "@/lib/auth-client";
 
 const items = [
@@ -56,6 +56,16 @@ const items = [
     icon: UsersRound,
   },
 ];
+
+const ClinicInitials = ({ name }: { name: string }) => {
+  const initials = name
+    ?.split(" ")
+    .map((word) => word[0])
+    .join("")
+    .toUpperCase();
+
+  return initials || "C";
+};
 
 export function AppSidebar() {
   const router = useRouter();
@@ -104,7 +114,7 @@ export function AppSidebar() {
                   isActive={pathname === "/subscription"}
                 >
                   <Link href="/subscription">
-                    <Gem />
+                    <Gem color="#3b82f6" />
                     <span>Assinatura</span>
                   </Link>
                 </SidebarMenuButton>
@@ -119,14 +129,20 @@ export function AppSidebar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton size="lg">
-                  <Avatar>
-                    <AvatarFallback>{emailInitials}</AvatarFallback>
+                  <Avatar className="border-2 border-white">
+                    {session.data?.user?.clinic?.name ? (
+                      <span className="text-sm font-medium flex items-center justify-center h-full w-full ">
+                        <ClinicInitials name={session.data.user.clinic.name} />
+                      </span>
+                    ) : (
+                      <AlignVerticalSpaceBetween />
+                    )}
                   </Avatar>
                   <div>
                     <p className="text-sm">
                       {session.data?.user?.clinic?.name}
                     </p>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-muted-foreground text-xs ">
                       {session.data?.user.email}
                     </p>
                   </div>
@@ -134,7 +150,7 @@ export function AppSidebar() {
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 <DropdownMenuItem onClick={handleSignOut}>
-                  <LogOut />
+                  <LogOut className="mr-2 h-4 w-4" />
                   Sair
                 </DropdownMenuItem>
               </DropdownMenuContent>
